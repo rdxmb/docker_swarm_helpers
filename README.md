@@ -1,4 +1,5 @@
-# New Document= docker swarm helpers =
+docker swarm helpers
+====================
 
 Description
 ===========
@@ -14,7 +15,7 @@ Tested on
 Requirements
 ============
   * ssh-key-forwarding on your docker nodes
-  * the docker nodes listed via in `docker node ls` must be reachable via their names through `ssh`, e.g. via
+  * the docker nodes listed in `docker node ls` must be reachable via their names through `ssh`, so e.g. define them in
     * `/etc/hosts` or
     * `.ssh/config`
 
