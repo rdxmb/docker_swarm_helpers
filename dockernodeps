@@ -58,14 +58,15 @@ fi
 # --------------------------------------------------------------------------------------
 # parse docker nodes running the service
 for NODEID in $(docker node ls -q) ; do 
-  if [[ $(docker service ps -f "node=$NODEID" --format "{{.CurrentState}}" "$SERVICENAME" 2>/dev/null | grep -cw 'Running') > 0 ]] ; then
+        if [[ $(docker service ps -f "node=$NODEID" --format "{{.CurrentState}}" "$SERVICENAME" 2>/dev/null | grep -cw 'Running') > 0 ]] ; then
 		NODENAME=$(docker node ls --format {{.Hostname}} -f id=$NODEID)
 		CONTAINERIDCOMMAND="docker ps -q -f status=running --filter name=$SERVICENAME 2>/dev/null"
 		CONTAINERID=$(ssh "$NODENAME" "$CONTAINERIDCOMMAND")
 		CONTAINERFOUND=true
-		echo "${NODENAME}:${CONTAINERID}"
-		if ! $ALL ; then 
-			break  
+		if $ALL ; then 
+		  echo "${NODENAME}:${CONTAINERID}"
+    else
+      RETURN="${NODENAME}:${CONTAINERID}"  
 		fi
 	fi 
 done
@@ -74,6 +75,9 @@ done
 # OUTPUT
 
 if $CONTAINERFOUND ; then
+  if ! $ALL ; then
+    echo $RETURN
+  fi
 	exit 0
 else
 	echo "no container with running $SERVICENAME found in this swarm."
