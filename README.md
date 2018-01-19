@@ -66,6 +66,7 @@ copy the files to /usr/local/bin on any manager in your swarm
 KnownIssues and Limitations
 ============================
 
+  * Services including the given <SERVICE> in their names will also be displayed with dockernodeps. This is due to the fact that `docker service ps --filter "name=<SERVICE>" works like that.
   * Only tested for containers with status 'Running'. Maybe there are other states like 'healthy' which have to be added.
 
 Contribute
