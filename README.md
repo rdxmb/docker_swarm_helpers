@@ -63,9 +63,12 @@ Recommends
 ==========
 copy the files to /usr/local/bin on any manager in your swarm
 
-=== KnownIssues and Limitations ===
+KnownIssues and Limitations
+============================
+
   * Only tested for containers with status 'Running'. Maybe there are other states like 'healthy' which have to be added.
 
-=== Contribute ===
+Contribute
+===========
 Feel free to contribute: pull requests are very welcome!
 
