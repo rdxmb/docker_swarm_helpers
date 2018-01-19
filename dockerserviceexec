@@ -39,6 +39,8 @@ fi
 if PAIR=$(dockernodeps $SERVICE) ; then
   NODE=${PAIR%%:*}
   CONTAINER=${PAIR#*:}
+else
+  exit 1
 fi
 
 # --------------------------------------------------------------------------------------
