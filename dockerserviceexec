@@ -39,6 +39,11 @@ fi
 if PAIR=$(dockernodeps $SERVICE) ; then
   NODE=${PAIR%%:*}
   CONTAINER=${PAIR#*:}
+  #this sequence takes the first container in case there are more of one in the node
+  set -f IFS=' '
+  set -- $CONTAINER
+  CONTAINER=$1
+  set +f; unset IFS
 else
   exit 1
 fi
